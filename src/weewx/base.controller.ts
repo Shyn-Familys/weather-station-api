@@ -7,7 +7,7 @@ import {PATH_METADATA} from '@nestjs/common/constants';
 
 export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
 
-    private static MAX_RECORDS = 100;
+    protected static MAX_RECORDS = 100;
 
     constructor(protected service: Service, private path: string) {
     }
