@@ -1,18 +1,16 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Pressure } from '../entities';
-import { Repository } from 'typeorm';
+import {Injectable} from '@nestjs/common';
+import {PressureEntity} from '../entities';
+import {ServiceBase} from '../base.service';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Repository} from 'typeorm';
 
 @Injectable()
-export class PressureService {
+export class PressureService extends ServiceBase<PressureEntity> {
 
     constructor(
-        @InjectRepository(Pressure)
-        private pressureRepository: Repository<Pressure>
+        @InjectRepository(PressureEntity)
+        protected repository: Repository<PressureEntity>
     ) {
-    }
-
-    async getFirstN(num = 10): Promise<Pressure[]> {
-        return await this.pressureRepository.find({take: num});
+        super(repository);
     }
 }

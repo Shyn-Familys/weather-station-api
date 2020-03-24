@@ -1,19 +1,8 @@
-import { Module } from '@nestjs/common';
-import { WeewxModule } from './weewx/weewx.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Archive } from './weewx/entities/Archive';
+import {Module} from '@nestjs/common';
+import {WeewxModule} from './weewx/weewx.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forRoot({
-            type: 'sqlite',
-            database: './db/weewx.sdb',
-            migrationsRun: false,
-            autoLoadEntities: true,
-            synchronize: false
-        }),
-        WeewxModule
-    ],
+    imports: [WeewxModule],
     controllers: [],
     providers: [],
 })
