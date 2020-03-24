@@ -7,13 +7,15 @@ import {PATH_METADATA} from '@nestjs/common/constants';
 
 export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
 
+    private static MAX_RECORDS = 100;
+
     constructor(protected service: Service, private path: string) {
     }
 
     @Get()
     async getToday(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         return await this.service.getToday({
             page: page,
@@ -25,7 +27,7 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     @Get('yesterday')
     async getYesterday(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getYesterday);
         return await this.service.getYesterday({
@@ -38,7 +40,7 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     @Get('week')
     async getWeek(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getYesterday);
         return await this.service.getThisWeek({
@@ -51,7 +53,7 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     @Get('month')
     async getMonth(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getYesterday);
         return await this.service.getThisMonth({
@@ -64,7 +66,7 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     @Get('quarter')
     async getQuarter(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getYesterday);
         return await this.service.getThisQuarter({
@@ -77,7 +79,7 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     @Get('year')
     async getYear(
         @Query('page') page = 0,
-        @Query('limit') limit = 100
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getYesterday);
         return await this.service.getThisYear({
