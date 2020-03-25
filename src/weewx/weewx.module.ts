@@ -7,15 +7,15 @@ import * as moment from 'moment-timezone';
 
 @Module({
     imports: [
+        ConfigModule.forRoot(),
         TypeOrmModule.forRoot({
             type: 'sqlite',
-            database: './db/weewx.sdb',
+            database: process.env.DATABASE_FILE,
             migrationsRun: false,
             autoLoadEntities: true,
             synchronize: false
         }),
-        TypeOrmModule.forFeature([...Entities]),
-        ConfigModule.forRoot()
+        TypeOrmModule.forFeature([...Entities])
     ],
     controllers: [...controllers],
     providers: [...services],
