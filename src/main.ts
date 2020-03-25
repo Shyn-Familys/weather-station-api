@@ -5,16 +5,13 @@ import * as compression from 'compression';
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestFastifyApplication>(
-        AppModule,
-        new FastifyAdapter()
-    );
+    const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
     app.use(compression());
-    app.setGlobalPrefix('api/v1');
+    app.setGlobalPrefix(process.env.URL_PREFIX);
     const reflector = app.get(Reflector);
     app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 
-    await app.listen(3000, '0.0.0.0');
+    await app.listen(Number.parseInt(process.env.SERVER_PORT), '0.0.0.0');
 }
 
 bootstrap();
