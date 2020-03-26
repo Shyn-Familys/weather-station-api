@@ -1,22 +1,23 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Build & Test
+name: Build, Test, & Tag
 
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '**.md'
   pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x, 13.x]
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -28,3 +29,14 @@ jobs:
       - run: npm test
         env:
           CI: true
+
+  tag:
+    needs: [ build ]
+    if: github.ref == '2-auto-publish-on-good-build'
+    runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@master
+            - name: Bump version and push tag
+              uses: mathieudutour/github-tag-action@v4
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
