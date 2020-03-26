@@ -1,6 +1,6 @@
 <h1>
     Weather Station API for WeeWX
-    <img src="weather-icon.png" width="300" alt="icon">
+    <img src="weather-icon.png" width="150" alt="icon" style="vertical-align: middle">
 </h1>
 
 ## Description
