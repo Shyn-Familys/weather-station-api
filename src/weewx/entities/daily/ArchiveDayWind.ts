@@ -2,48 +2,48 @@ import {Column, Entity} from "typeorm";
 
 @Entity("archive_day_wind")
 export class ArchiveDayWind {
-    @Column("integer", {primary: true, serviceFnName: "dateTime", unique: true})
+    @Column("integer", {primary: true, name: "dateTime", unique: true})
     dateTime: number;
 
-    @Column("real", {serviceFnName: "min", nullable: true})
+    @Column("real", {name: "min", nullable: true})
     min: number | null;
 
-    @Column("integer", {serviceFnName: "mintime", nullable: true})
+    @Column("integer", {name: "mintime", nullable: true})
     mintime: number | null;
 
-    @Column("real", {serviceFnName: "max", nullable: true})
+    @Column("real", {name: "max", nullable: true})
     max: number | null;
 
-    @Column("integer", {serviceFnName: "maxtime", nullable: true})
+    @Column("integer", {name: "maxtime", nullable: true})
     maxtime: number | null;
 
-    @Column("real", {serviceFnName: "sum", nullable: true})
+    @Column("real", {name: "sum", nullable: true})
     sum: number | null;
 
-    @Column("integer", {serviceFnName: "count", nullable: true})
+    @Column("integer", {name: "count", nullable: true})
     count: number | null;
 
-    @Column("real", {serviceFnName: "wsum", nullable: true})
+    @Column("real", {name: "wsum", nullable: true})
     wsum: number | null;
 
-    @Column("integer", {serviceFnName: "sumtime", nullable: true})
+    @Column("integer", {name: "sumtime", nullable: true})
     sumtime: number | null;
 
-    @Column("real", {serviceFnName: "max_dir", nullable: true})
+    @Column("real", {name: "max_dir", nullable: true})
     maxDir: number | null;
 
-    @Column("real", {serviceFnName: "xsum", nullable: true})
+    @Column("real", {name: "xsum", nullable: true})
     xsum: number | null;
 
-    @Column("real", {serviceFnName: "ysum", nullable: true})
+    @Column("real", {name: "ysum", nullable: true})
     ysum: number | null;
 
-    @Column("integer", {serviceFnName: "dirsumtime", nullable: true})
+    @Column("integer", {name: "dirsumtime", nullable: true})
     dirsumtime: number | null;
 
-    @Column("real", {serviceFnName: "squaresum", nullable: true})
+    @Column("real", {name: "squaresum", nullable: true})
     squaresum: number | null;
 
-    @Column("real", {serviceFnName: "wsquaresum", nullable: true})
+    @Column("real", {name: "wsquaresum", nullable: true})
     wsquaresum: number | null;
 }
