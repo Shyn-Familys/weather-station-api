@@ -1,75 +1,116 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<h1>Weather Station API for WeeWX</h1>
+<img alt="weather icon" src="Weather_Icons_-_hi_tsra.svg.png">
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a NodeJS application that will provide a REST API for the data collected by 
+[WeeWX](http://www.weewx.com/).
+
+For years WeeWX has been, in my opinion, one of the top tools for running your own
+personal weather station (PWS). It integrates with almost every weather like device
+out there. It has served me well for years running on a 
+[RaspberryPI](https://www.raspberrypi.org/) in my basement collecting data. However
+it is not known for its UI. It also does not expose a web API so that it can integrate
+with one.
+
+So I decided it was time for it to have one so I could also build a proper modern web
+UI for it (coming soon). 
 
 ## Installation
 
+Check out the source code to a location you plan to run it from
 ```bash
-$ npm install
+$ git checkout https://github.com/jkworth/weather-station-api.git
+
+$ cd weather-station-api
+
+$ npm i
 ```
 
-## Running the app
+#### RaspberryPI
+
+On the PI you will have issues with the Sqlite3 node module. To install the application
+on, as I did, on the same device that WeeWX is running you will need to `sudo` a number
+of the calls. If you are not then you may omit them when running the commands below.
 
 ```bash
-# development
-$ npm run start
+$ cd /etc
 
-# watch mode
-$ npm run start:dev
+$ sudo git checkout https://github.com/jkworth/weather-station-api.git
 
-# production mode
+$ cd weather-station-api
+
+$ sudo npm install sqlite3 --build-from-source
+
+$ sudo npm i
+```
+
+## Configuration
+
+All of the configuration is done through a single file. `.env`. The file is located
+in the root of the `weather-station-api` folder.
+
+```bash
+# This is the port that the API will be exposed from 
+SERVER_PORT=3000
+
+# A prefix to the URL. This be any valid URL portion but can not be blank.
+# if unwanted then set to /
+URL_PREFIX=/api/v1
+
+# Absolute/Relative path to the weewx.sdb database file
+DATABASE_FILE=/var/lib/weewx/weewx.sdb
+
+# timezone the data within the database is using
+DATA_TIMEZONE=UTC
+
+# timezone the station is running in
+STATION_TIMEZONE=America/New_York
+```
+
+## Manually Running the app
+
+```bash
+# see below for how to set up as systmed service
 $ npm run start:prod
 ```
 
-## Test
-
+## Run as systemd service (RaspberryPI)
 ```bash
-# unit tests
-$ npm run test
+$ sudo nano /lib/systemd/system/weather-station-api.service
+```
 
-# e2e tests
-$ npm run test:e2e
+Add the following to the file:
+```text
+[Unit]
+Description=weewx weather station rest API
+After=network.target
 
-# test coverage
-$ npm run test:cov
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/etc/weather-station-api/
+ExecStart=/usr/bin/npm run start:prod
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+---
+```bash
+# Enable service to start on boot
+$ sudo systemctl enable weather-station-api
+
+# Start the service
+$ sudo systemctl start weather-station-api
 ```
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+If you find any issues or have suggestions please create an issue in the 
+[github project](https://github.com/jkworth/weather-station-api/issues)
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+- Author - [jkworth]() (programmer, pilot, and lover of weather and technology)
