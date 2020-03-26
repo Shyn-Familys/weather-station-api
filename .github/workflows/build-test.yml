@@ -34,9 +34,9 @@ jobs:
     needs: [ build ]
     if: github.ref == 'master'
     runs-on: ubuntu-latest
-      steps:
-          - uses: actions/checkout@v2
-            - name: Bump version and push tag
-              uses: mathieudutour/github-tag-action@v4
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
