@@ -32,7 +32,7 @@ jobs:
 
   tag:
     needs: [ build ]
-    if: github.ref == '2-auto-publish-on-good-build'
+    if: github.ref == 'master'
     runs-on: ubuntu-latest
       steps:
           - uses: actions/checkout@master
