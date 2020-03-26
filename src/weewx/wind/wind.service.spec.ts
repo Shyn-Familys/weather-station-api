@@ -1,12 +1,21 @@
 import {Test, TestingModule} from '@nestjs/testing';
 import {WindService} from './wind.service';
+import {Repository} from 'typeorm';
+import {WindEntity} from '../entities';
+import {getRepositoryToken} from '@nestjs/typeorm';
 
-describe('PressureService', () => {
+describe('Wind Service', () => {
     let service: WindService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [WindService],
+            providers: [
+                WindService,
+                {
+                    provide: getRepositoryToken(WindEntity),
+                    useClass: Repository
+                }
+            ]
         }).compile();
 
         service = module.get<WindService>(WindService);

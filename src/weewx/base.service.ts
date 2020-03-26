@@ -27,9 +27,10 @@ export abstract class ServiceBase<Entity extends ArchiveBaseEntity> {
     }
 
     async getYesterday(options: IPaginationOptions): Promise<Pagination<Entity>> {
-        const startDate: number = moment().tz(process.env.STATION_TIMEZONE).startOf('day').subtract(1, 'days').unix();
-        const endDate: number = moment().tz(process.env.STATION_TIMEZONE).startOf('day').unix();
-        const query = ServiceBase.getRange(startDate, endDate);
+        const endDate = moment().tz(process.env.STATION_TIMEZONE).startOf('day');
+        const startDate = moment(endDate).subtract(1, 'days');
+
+        const query = ServiceBase.getRange(startDate.unix(), endDate.unix());
         return await paginate(this.repository, options, query);
     }
 
