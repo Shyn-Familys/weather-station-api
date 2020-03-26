@@ -32,7 +32,7 @@ jobs:
 
   tagging:
     needs: [ build ]
-    if: github.ref == 'master'
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
