@@ -1,6 +1,6 @@
 {
   "name": "weather-station-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "NodeJS application to provide a REST API for the data collected by WeeWX",
   "author": "jkworth",
   "private": true,
