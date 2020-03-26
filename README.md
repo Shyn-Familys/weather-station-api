@@ -1,5 +1,5 @@
 <h1>Weather Station API for WeeWX</h1>
-![weather icon](weather-icon.png)
+<img src="weather-icon.png" width="300" alt="icon">
 
 ## Description
 
