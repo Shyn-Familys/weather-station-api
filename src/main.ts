@@ -1,11 +1,12 @@
-import {NestFactory, Reflector} from '@nestjs/core';
-import {AppModule} from './app.module';
 import {ClassSerializerInterceptor} from '@nestjs/common';
-import * as compression from 'compression';
+import {NestFactory, Reflector} from '@nestjs/core';
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
+import * as compression from 'compression';
+import {AppModule} from './app.module';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+    app.enableCors();
     app.use(compression());
     app.setGlobalPrefix(process.env.URL_PREFIX);
     const reflector = app.get(Reflector);

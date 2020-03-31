@@ -1,14 +1,14 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class SolarEntity extends ArchiveBaseEntity {
-    @Column("real", {name: "radiation", nullable: true})
+    @Column('real', {name: 'radiation', nullable: true})
     radiation: number | null;
     radiationUnits: 'W/M2';
 
-    @Column("real", {name: "UV", nullable: true})
+    @Column('real', {name: 'UV', nullable: true})
     uv: number | null;
     uvUnits: 'UV';
 

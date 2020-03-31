@@ -1,31 +1,31 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity} from 'typeorm';
 
-@Entity("archive_day_hail")
+@Entity('archive_day_hail')
 export class ArchiveDayHail {
-    @Column("integer", {primary: true, name: "dateTime", unique: true})
+    @Column('integer', {primary: true, name: 'dateTime', unique: true})
     dateTime: number;
 
-    @Column("real", {name: "min", nullable: true})
+    @Column('real', {name: 'min', nullable: true})
     min: number | null;
 
-    @Column("integer", {name: "mintime", nullable: true})
+    @Column('integer', {name: 'mintime', nullable: true})
     mintime: number | null;
 
-    @Column("real", {name: "max", nullable: true})
+    @Column('real', {name: 'max', nullable: true})
     max: number | null;
 
-    @Column("integer", {name: "maxtime", nullable: true})
+    @Column('integer', {name: 'maxtime', nullable: true})
     maxtime: number | null;
 
-    @Column("real", {name: "sum", nullable: true})
+    @Column('real', {name: 'sum', nullable: true})
     sum: number | null;
 
-    @Column("integer", {name: "count", nullable: true})
+    @Column('integer', {name: 'count', nullable: true})
     count: number | null;
 
-    @Column("real", {name: "wsum", nullable: true})
+    @Column('real', {name: 'wsum', nullable: true})
     wsum: number | null;
 
-    @Column("integer", {name: "sumtime", nullable: true})
+    @Column('integer', {name: 'sumtime', nullable: true})
     sumtime: number | null;
 }

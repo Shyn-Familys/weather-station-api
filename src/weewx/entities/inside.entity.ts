@@ -1,15 +1,15 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class InsideEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "inTemp", nullable: true})
+    @Column('real', {name: 'inTemp', nullable: true})
     insideTemperature: number | null;
     insideTemperatureUnits: string | null;
 
-    @Column("real", {name: "inHumidity", nullable: true})
+    @Column('real', {name: 'inHumidity', nullable: true})
     insideHumidity: number | null;
     insideHumidityUnits = '%';
 

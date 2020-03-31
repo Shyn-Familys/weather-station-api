@@ -1,23 +1,23 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class PrecipitationEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "rain", nullable: true})
+    @Column('real', {name: 'rain', nullable: true})
     rain: number | null;
     rainUnits: string | null;
 
-    @Column("real", {name: "rainRate", nullable: true})
+    @Column('real', {name: 'rainRate', nullable: true})
     rainRate: number | null;
     rainRateUnits: string | null;
 
-    @Column("real", {name: "hail", nullable: true})
+    @Column('real', {name: 'hail', nullable: true})
     hail: number | null;
     hailUnits: string | null;
 
-    @Column("real", {name: "hailRate", nullable: true})
+    @Column('real', {name: 'hailRate', nullable: true})
     hailRate: number | null;
     hailRateUnits: string | null;
 

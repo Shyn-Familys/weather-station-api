@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {Get, Query} from '@nestjs/common';
+import {PATH_METADATA} from '@nestjs/common/constants';
+import {Pagination} from 'nestjs-typeorm-paginate';
+import * as Path from 'path';
 import {ServiceBase} from './base.service';
 import {ArchiveBaseEntity} from './entities/archiveBase.entity';
-import {Pagination} from 'nestjs-typeorm-paginate';
-import {PATH_METADATA} from '@nestjs/common/constants';
-import * as Path from 'path';
 
 export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
 
@@ -92,6 +92,10 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     }
 
     private buildRoute(fn: Function): string {
-        return Path.join(process.env.URL_PREFIX, this.path, Reflect.getMetadata(PATH_METADATA, fn));
+        let fnPart = Reflect.getMetadata(PATH_METADATA, fn);
+        if (fnPart === '/') {
+            fnPart = '';
+        }
+        return Path.join(process.env.URL_PREFIX, this.path, fnPart);
     }
 }

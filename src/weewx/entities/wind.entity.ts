@@ -1,23 +1,23 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class WindEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "windSpeed", nullable: true})
+    @Column('real', {name: 'windSpeed', nullable: true})
     windSpeed: number | null;
     windSpeedUnits: string | null;
 
-    @Column("real", {name: "windDir", nullable: true})
+    @Column('real', {name: 'windDir', nullable: true})
     windDirection: number | null;
     windDirectionUnits: '°';
 
-    @Column("real", {name: "windGust", nullable: true})
+    @Column('real', {name: 'windGust', nullable: true})
     windGustSpeed: number | null;
     windGustSpeedUnits: string | null;
 
-    @Column("real", {name: "windGustDir", nullable: true})
+    @Column('real', {name: 'windGustDir', nullable: true})
     windGustDirection: number | null;
     windGustDirectionUnits: '°';
 

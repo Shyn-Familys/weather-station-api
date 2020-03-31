@@ -1,23 +1,23 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class HumidityEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "outHumidity", nullable: true})
+    @Column('real', {name: 'outHumidity', nullable: true})
     outsideHumidity: number | null;
     outsideHumidityUnit = '%';
 
-    @Column("real", {name: "ET", nullable: true})
+    @Column('real', {name: 'ET', nullable: true})
     evapotranspiration: number | null;
     evapotranspirationUnit: string | null;
 
-    @Column("real", {name: "extraHumid1", nullable: true})
+    @Column('real', {name: 'extraHumid1', nullable: true})
     extraHumid1: number | null;
     extraHumid1Unit = '%';
 
-    @Column("real", {name: "extraHumid2", nullable: true})
+    @Column('real', {name: 'extraHumid2', nullable: true})
     extraHumid2: number | null;
     extraHumid2Unit = '%';
 
