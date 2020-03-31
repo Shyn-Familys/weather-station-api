@@ -1,11 +1,11 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {ServiceBase} from './base.service';
-import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 import {Controller, Injectable} from '@nestjs/common';
-import {ControllerBase} from './base.controller';
 import {PATH_METADATA} from '@nestjs/common/constants';
+import {Test, TestingModule} from '@nestjs/testing';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
+import {ControllerBase} from './base.controller';
+import {ServiceBase} from './base.service';
+import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 
 describe('Controller Base', () => {
 
@@ -68,7 +68,7 @@ describe('Controller Base', () => {
     });
 
     const functionsToTest = [
-        {controllerFnName: 'getToday', serviceFnName: 'getToday', path: '/'},
+        {controllerFnName: 'getToday', serviceFnName: 'getToday', path: ''},
         {controllerFnName: 'getYesterday', serviceFnName: 'getYesterday', path: '/yesterday'},
         {controllerFnName: 'getWeek', serviceFnName: 'getThisWeek', path: '/week'},
         {controllerFnName: 'getMonth', serviceFnName: 'getThisMonth', path: '/month'},
