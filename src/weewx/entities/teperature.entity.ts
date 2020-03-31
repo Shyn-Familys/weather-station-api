@@ -1,35 +1,35 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class TemperatureEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "outTemp", nullable: true})
+    @Column('real', {name: 'outTemp', nullable: true})
     outsideTemperature: number | null;
     outsideTemperatureUnits: string | null;
 
-    @Column("real", {name: "dewpoint", nullable: true})
+    @Column('real', {name: 'dewpoint', nullable: true})
     dewPoint: number | null;
     dewPointUnits: string | null;
 
-    @Column("real", {name: "windchill", nullable: true})
+    @Column('real', {name: 'windchill', nullable: true})
     windChill: number | null;
     windChillUnits: string | null;
 
-    @Column("real", {name: "heatindex", nullable: true})
+    @Column('real', {name: 'heatindex', nullable: true})
     heatIndex: number | null;
     heatIndexUnits: string | null;
 
-    @Column("real", {name: "extraTemp1", nullable: true})
+    @Column('real', {name: 'extraTemp1', nullable: true})
     extraTemperature1: number | null;
     extraTemperature1Units: string | null;
 
-    @Column("real", {name: "extraTemp2", nullable: true})
+    @Column('real', {name: 'extraTemp2', nullable: true})
     extraTemperature2: number | null;
     extraTemperature2Units: string | null;
 
-    @Column("real", {name: "extraTemp3", nullable: true})
+    @Column('real', {name: 'extraTemp3', nullable: true})
     extraTemperature3: number | null;
     extraTemperature3Units: string | null;
 

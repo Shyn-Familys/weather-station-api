@@ -1,19 +1,19 @@
-import {AfterLoad, Column, Entity} from "typeorm";
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
 import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class PressureEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "barometer", nullable: true})
+    @Column('real', {name: 'barometer', nullable: true})
     barometer: number | null;
     barometerUnit: string | null;
 
-    @Column("real", {name: "pressure", nullable: true})
+    @Column('real', {name: 'pressure', nullable: true})
     pressure: number | null;
     pressureUnit: string | null;
 
-    @Column("real", {name: "altimeter", nullable: true})
+    @Column('real', {name: 'altimeter', nullable: true})
     altimeter: number | null;
     altimeterUnit: string | null;
 

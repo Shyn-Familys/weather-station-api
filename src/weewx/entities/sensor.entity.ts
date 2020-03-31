@@ -1,51 +1,51 @@
-import {AfterLoad, Column, Entity} from "typeorm";
-import {ArchiveBaseEntity} from './archiveBase.entity';
+import {AfterLoad, Column, Entity} from 'typeorm';
 import {Units} from '../enums';
+import {ArchiveBaseEntity} from './archiveBase.entity';
 
-@Entity("archive")
+@Entity('archive')
 export class SensorEntity extends ArchiveBaseEntity {
 
-    @Column("real", {name: "rxCheckPercent", nullable: true})
+    @Column('real', {name: 'rxCheckPercent', nullable: true})
     signalQuality: number | null;
     signalQualityUnits: '%';
 
-    @Column("real", {name: "txBatteryStatus", nullable: true})
+    @Column('real', {name: 'txBatteryStatus', nullable: true})
     transmitterBattery: number | null;
     transmitterBatteryUnits: '%';
 
-    @Column("real", {name: "consBatteryVoltage", nullable: true})
+    @Column('real', {name: 'consBatteryVoltage', nullable: true})
     consoleBatteryVoltage: number | null;
     consoleBatteryVoltageUnits = 'volts';
 
-    @Column("real", {name: "heatingTemp", nullable: true})
+    @Column('real', {name: 'heatingTemp', nullable: true})
     heatingTemp: number | null;
     heatingTemperatureUnits: string | null;
 
-    @Column("real", {name: "heatingVoltage", nullable: true})
+    @Column('real', {name: 'heatingVoltage', nullable: true})
     heatingVoltage: number | null;
     heatingVoltageUnits = 'volts';
 
-    @Column("real", {name: "supplyVoltage", nullable: true})
+    @Column('real', {name: 'supplyVoltage', nullable: true})
     supplyVoltage: number | null;
     supplyVoltageUnits = 'volts';
 
-    @Column("real", {name: "referenceVoltage", nullable: true})
+    @Column('real', {name: 'referenceVoltage', nullable: true})
     referenceVoltage: number | null;
     referenceVoltageUnits = 'volts';
 
-    @Column("real", {name: "windBatteryStatus", nullable: true})
+    @Column('real', {name: 'windBatteryStatus', nullable: true})
     windSensorBattery: number | null;
     windSensorBatteryUnits: '%';
 
-    @Column("real", {name: "rainBatteryStatus", nullable: true})
+    @Column('real', {name: 'rainBatteryStatus', nullable: true})
     rainSensorBattery: number | null;
     rainSensorBatteryUnits: '%';
 
-    @Column("real", {name: "outTempBatteryStatus", nullable: true})
+    @Column('real', {name: 'outTempBatteryStatus', nullable: true})
     outsideTemperatureBattery: number | null;
     outsideTemperatureBatteryUnits: '%';
 
-    @Column("real", {name: "inTempBatteryStatus", nullable: true})
+    @Column('real', {name: 'inTempBatteryStatus', nullable: true})
     insideTemperatureBattery: number | null;
     insideTemperatureBatteryUnits: '%';
 
