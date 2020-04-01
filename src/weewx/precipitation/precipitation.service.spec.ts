@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {PrecipitationService} from './precipitation.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {PrecipitationEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {PrecipitationEntity} from '../entities';
+import {PrecipitationService} from './precipitation.service';
 
 describe('Precipitation Service', () => {
     let service: PrecipitationService;

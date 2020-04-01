@@ -1,7 +1,7 @@
 import {Controller} from '@nestjs/common';
+import {PATH_METADATA} from '@nestjs/common/constants';
 import {ControllerBase} from '../base.controller';
 import {HumidityService} from './humidity.service';
-import {PATH_METADATA} from '@nestjs/common/constants';
 
 @Controller('humidity')
 export class HumidityController extends ControllerBase<HumidityService> {

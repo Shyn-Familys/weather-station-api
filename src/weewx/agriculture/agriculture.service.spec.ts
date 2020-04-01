@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {AgricultureService} from './agriculture.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {AgricultureEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {AgricultureEntity} from '../entities';
+import {AgricultureService} from './agriculture.service';
 
 describe('Agriculture Service', () => {
     let service: AgricultureService;
