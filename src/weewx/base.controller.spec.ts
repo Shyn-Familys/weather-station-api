@@ -34,6 +34,9 @@ describe('Controller Base', () => {
             async getToday(): Promise<any> {
                 return;
             },
+            async getLast24Hours(): Promise<any> {
+                return;
+            },
             async getYesterday(): Promise<any> {
                 return;
             },
@@ -69,6 +72,7 @@ describe('Controller Base', () => {
 
     const functionsToTest = [
         {controllerFnName: 'getToday', serviceFnName: 'getToday', path: ''},
+        {controllerFnName: 'getLast24Hours', serviceFnName: 'getLast24Hours', path: '/last24Hours'},
         {controllerFnName: 'getYesterday', serviceFnName: 'getYesterday', path: '/yesterday'},
         {controllerFnName: 'getWeek', serviceFnName: 'getThisWeek', path: '/week'},
         {controllerFnName: 'getMonth', serviceFnName: 'getThisMonth', path: '/month'},

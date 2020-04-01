@@ -26,6 +26,19 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
         });
     }
 
+    @Get('last24Hours')
+    async getLast24Hours(
+        @Query('page') page = 0,
+        @Query('limit') limit = ControllerBase.MAX_RECORDS
+    ): Promise<Pagination<ArchiveBaseEntity>> {
+        const route = this.buildRoute(this.getLast24Hours);
+        return await this.service.getLast24Hours({
+            page: page,
+            limit: limit,
+            route: route
+        });
+    }
+
     @Get('yesterday')
     async getYesterday(
         @Query('page') page = 0,
