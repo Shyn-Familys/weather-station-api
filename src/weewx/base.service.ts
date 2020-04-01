@@ -26,6 +26,11 @@ export abstract class ServiceBase<Entity extends ArchiveBaseEntity> {
         return await paginate(this.repository, options, query);
     }
 
+    async getSince(startTime: number, options: IPaginationOptions): Promise<Pagination<Entity>> {
+        const query = ServiceBase.getRange(moment(startTime).tz(process.env.STATION_TIMEZONE).unix());
+        return await paginate(this.repository, options, query);
+    }
+
     async getLast24Hours(options: IPaginationOptions): Promise<Pagination<Entity>> {
         const query = ServiceBase.getRange(moment().tz(process.env.STATION_TIMEZONE).subtract(1, 'day').unix());
         return await paginate(this.repository, options, query);

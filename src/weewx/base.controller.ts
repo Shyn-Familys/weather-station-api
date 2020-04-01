@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {Get, Query} from '@nestjs/common';
+import {Get, Param, ParseIntPipe, Query} from '@nestjs/common';
 import {PATH_METADATA} from '@nestjs/common/constants';
 import {Pagination} from 'nestjs-typeorm-paginate';
 import * as Path from 'path';
@@ -20,6 +20,20 @@ export class ControllerBase<Service extends ServiceBase<ArchiveBaseEntity>> {
     ): Promise<Pagination<ArchiveBaseEntity>> {
         const route = this.buildRoute(this.getToday);
         return await this.service.getToday({
+            page: page,
+            limit: limit,
+            route: route
+        });
+    }
+
+    @Get('from/:startTime')
+    async getSince(
+        @Query('page') page = 0,
+        @Query('limit') limit = ControllerBase.MAX_RECORDS,
+        @Param('startTime', ParseIntPipe) startTime: number
+    ): Promise<Pagination<ArchiveBaseEntity>> {
+        const route = this.buildRoute(this.getSince).replace(':startTime', startTime.toString());
+        return await this.service.getSince(startTime, {
             page: page,
             limit: limit,
             route: route
