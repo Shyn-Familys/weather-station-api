@@ -1,7 +1,7 @@
 <h1>
     Weather Station API for WeeWX
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <img src="weather-icon.png" width="150" alt="icon" style="vertical-align: middle">
+    &nbsp;&nbsp;&nbsp;&nbsp; 
+    <img src="weather-icon.png" height="150" alt="icon" style="vertical-align: middle">
 </h1>
 
 ![Build & Test](https://github.com/jkworth/weather-station-api/workflows/Build%20&%20Test/badge.svg?branch=master)
