@@ -1,7 +1,7 @@
 import {Controller} from '@nestjs/common';
+import {PATH_METADATA} from '@nestjs/common/constants';
 import {ControllerBase} from '../base.controller';
 import {PressureService} from './pressure.service';
-import {PATH_METADATA} from '@nestjs/common/constants';
 
 @Controller('pressure')
 export class PressureController extends ControllerBase<PressureService> {

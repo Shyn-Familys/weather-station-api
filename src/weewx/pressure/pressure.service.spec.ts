@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {PressureService} from './pressure.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {PressureEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {PressureEntity} from '../entities';
+import {PressureService} from './pressure.service';
 
 describe('Pressure Service', () => {
     let service: PressureService;

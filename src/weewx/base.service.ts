@@ -1,7 +1,7 @@
-import {Between, FindConditions, MoreThanOrEqual, Repository} from 'typeorm';
 import * as moment from 'moment-timezone';
-import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 import {IPaginationOptions, paginate, Pagination} from 'nestjs-typeorm-paginate';
+import {Between, FindConditions, MoreThanOrEqual, Repository} from 'typeorm';
+import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 
 export abstract class ServiceBase<Entity extends ArchiveBaseEntity> {
 
@@ -23,6 +23,16 @@ export abstract class ServiceBase<Entity extends ArchiveBaseEntity> {
 
     async getToday(options: IPaginationOptions): Promise<Pagination<Entity>> {
         const query = ServiceBase.getRange(moment().tz(process.env.STATION_TIMEZONE).startOf('day').unix());
+        return await paginate(this.repository, options, query);
+    }
+
+    async getSince(startTime: number, options: IPaginationOptions): Promise<Pagination<Entity>> {
+        const query = ServiceBase.getRange(moment(startTime).tz(process.env.STATION_TIMEZONE).unix());
+        return await paginate(this.repository, options, query);
+    }
+
+    async getLast24Hours(options: IPaginationOptions): Promise<Pagination<Entity>> {
+        const query = ServiceBase.getRange(moment().tz(process.env.STATION_TIMEZONE).subtract(1, 'day').unix());
         return await paginate(this.repository, options, query);
     }
 

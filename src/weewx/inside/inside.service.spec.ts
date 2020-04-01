@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {InsideService} from './inside.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {InsideEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {InsideEntity} from '../entities';
+import {InsideService} from './inside.service';
 
 describe('Inside Service', () => {
     let service: InsideService;

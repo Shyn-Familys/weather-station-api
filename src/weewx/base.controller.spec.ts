@@ -34,6 +34,12 @@ describe('Controller Base', () => {
             async getToday(): Promise<any> {
                 return;
             },
+            async getSince(): Promise<any> {
+                return;
+            },
+            async getLast24Hours(): Promise<any> {
+                return;
+            },
             async getYesterday(): Promise<any> {
                 return;
             },
@@ -69,6 +75,8 @@ describe('Controller Base', () => {
 
     const functionsToTest = [
         {controllerFnName: 'getToday', serviceFnName: 'getToday', path: ''},
+        {controllerFnName: 'getSince', serviceFnName: 'getSince', params: [undefined, undefined, 1], path: '/from/1'},
+        {controllerFnName: 'getLast24Hours', serviceFnName: 'getLast24Hours', path: '/last24Hours'},
         {controllerFnName: 'getYesterday', serviceFnName: 'getYesterday', path: '/yesterday'},
         {controllerFnName: 'getWeek', serviceFnName: 'getThisWeek', path: '/week'},
         {controllerFnName: 'getMonth', serviceFnName: 'getThisMonth', path: '/month'},
@@ -81,13 +89,22 @@ describe('Controller Base', () => {
             it('should call service with correct parameters when none passed in', async () => {
                 spyOn(service as any, func.serviceFnName);
 
-                await controller[func.controllerFnName]();
-
-                expect(service[func.serviceFnName]).toHaveBeenCalledWith(
-                    expect.objectContaining({
-                        limit: 100, page: 0, route: `${process.env.URL_PREFIX}/base${func.path}`
-                    })
-                );
+                if (func.params) {
+                    await controller[func.controllerFnName](...func.params);
+                    expect(service[func.serviceFnName]).toHaveBeenCalledWith(
+                        func.params[2],
+                        expect.objectContaining({
+                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}/base${func.path}`
+                        })
+                    );
+                } else {
+                    await controller[func.controllerFnName]();
+                    expect(service[func.serviceFnName]).toHaveBeenCalledWith(
+                        expect.objectContaining({
+                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}/base${func.path}`
+                        })
+                    );
+                }
             });
         });
     });

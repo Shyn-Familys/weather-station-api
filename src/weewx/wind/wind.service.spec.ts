@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {WindService} from './wind.service';
+import {getRepositoryToken} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {WindEntity} from '../entities';
-import {getRepositoryToken} from '@nestjs/typeorm';
+import {WindService} from './wind.service';
 
 describe('Wind Service', () => {
     let service: WindService;

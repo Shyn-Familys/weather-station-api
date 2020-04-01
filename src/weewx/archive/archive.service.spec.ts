@@ -1,24 +1,24 @@
 import {Test, TestingModule} from '@nestjs/testing';
 import {getRepositoryToken} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
-import {PrecipitationEntity} from '../entities';
-import {PrecipitationService} from './precipitation.service';
+import {ArchiveEntity} from '../entities/archive.entity';
+import {ArchiveService} from './archive.service';
 
-describe('Precipitation Service', () => {
-    let service: PrecipitationService;
+describe('Archive Service', () => {
+    let service: ArchiveService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
-                PrecipitationService,
+                ArchiveService,
                 {
-                    provide: getRepositoryToken(PrecipitationEntity),
+                    provide: getRepositoryToken(ArchiveEntity),
                     useClass: Repository
                 }
             ],
         }).compile();
 
-        service = module.get<PrecipitationService>(PrecipitationService);
+        service = module.get<ArchiveService>(ArchiveService);
     });
 
     it('should be defined', () => {

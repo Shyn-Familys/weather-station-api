@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {Entities} from './entities';
-import {controllers, services} from './';
 import {ConfigModule} from '@nestjs/config';
+import {TypeOrmModule} from '@nestjs/typeorm';
 import * as moment from 'moment-timezone';
+import {controllers, services} from './';
+import {Entities} from './entities';
 
 @Module({
     imports: [

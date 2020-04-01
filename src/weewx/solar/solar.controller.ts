@@ -1,7 +1,7 @@
 import {Controller} from '@nestjs/common';
+import {PATH_METADATA} from '@nestjs/common/constants';
 import {ControllerBase} from '../base.controller';
 import {SolarService} from './solar.service';
-import {PATH_METADATA} from '@nestjs/common/constants';
 
 @Controller('solar')
 export class SolarController extends ControllerBase<SolarService> {

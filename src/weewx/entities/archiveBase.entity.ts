@@ -1,5 +1,6 @@
 import {Exclude} from 'class-transformer';
-import {Column} from 'typeorm';
+import * as moment from 'moment-timezone';
+import {AfterLoad, Column} from 'typeorm';
 
 export abstract class ArchiveBaseEntity {
     @Column('integer', {primary: true, name: 'dateTime', unique: true})
@@ -13,4 +14,9 @@ export abstract class ArchiveBaseEntity {
     interval: number;
 
     stationTimezone: string = process.env.STATION_TIMEZONE;
+
+    @AfterLoad()
+    setBaseUnits() {
+        this.dateTime = moment.unix(this.dateTime).valueOf();
+    }
 }

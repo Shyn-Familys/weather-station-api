@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {HumidityService} from './humidity.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {HumidityEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {HumidityEntity} from '../entities';
+import {HumidityService} from './humidity.service';
 
 describe('Humidity Service', () => {
     let service: HumidityService;

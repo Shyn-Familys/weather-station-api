@@ -1,11 +1,11 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {Repository} from 'typeorm';
-import {getRepositoryToken, InjectRepository} from '@nestjs/typeorm';
-import {ServiceBase} from './base.service';
-import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 import {Injectable} from '@nestjs/common';
+import {Test, TestingModule} from '@nestjs/testing';
+import {getRepositoryToken, InjectRepository} from '@nestjs/typeorm';
 import * as moment from 'moment-timezone';
 import * as nestjsTypeormPaginate from 'nestjs-typeorm-paginate';
+import {Repository} from 'typeorm';
+import {ServiceBase} from './base.service';
+import {ArchiveBaseEntity} from './entities/archiveBase.entity';
 
 
 describe('Service Base', () => {
@@ -45,6 +45,50 @@ describe('Service Base', () => {
             spyOn(nestjsTypeormPaginate, 'paginate').and.returnValue([]);
 
             await service.getToday({limit: 10, page: 1, route: 'testing/route'});
+
+            expect(nestjsTypeormPaginate.paginate).toHaveBeenCalledWith(
+                expect.any(Object),
+                expect.any(Object),
+                expect.objectContaining({
+                    order: expect.objectContaining({dateTime: 'ASC'}),
+                    where: expect.objectContaining({
+                        dateTime: expect.objectContaining({
+                            _value: expectedTime
+                        })
+                    })
+                })
+            );
+        });
+    });
+
+    describe('getSince', () => {
+        it('should ask for only the results for a point in time', async () => {
+            const expectedTime = moment().tz('UTC').valueOf();
+            spyOn(nestjsTypeormPaginate, 'paginate').and.returnValue([]);
+
+            await service.getSince(expectedTime, {limit: 10, page: 1, route: 'testing/route'});
+
+            expect(nestjsTypeormPaginate.paginate).toHaveBeenCalledWith(
+                expect.any(Object),
+                expect.any(Object),
+                expect.objectContaining({
+                    order: expect.objectContaining({dateTime: 'ASC'}),
+                    where: expect.objectContaining({
+                        dateTime: expect.objectContaining({
+                            _value: Math.floor(expectedTime / 1000)
+                        })
+                    })
+                })
+            );
+        });
+    });
+
+    describe('getLast24Hours', () => {
+        it('should ask for only the results for the last 24 hours', async () => {
+            const expectedTime = moment().tz('UTC').subtract(1, 'day').unix();
+            spyOn(nestjsTypeormPaginate, 'paginate').and.returnValue([]);
+
+            await service.getLast24Hours({limit: 10, page: 1, route: 'testing/route'});
 
             expect(nestjsTypeormPaginate.paginate).toHaveBeenCalledWith(
                 expect.any(Object),

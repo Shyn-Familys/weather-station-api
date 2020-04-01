@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {SensorService} from './sensor.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {SensorEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {SensorEntity} from '../entities';
+import {SensorService} from './sensor.service';
 
 describe('Sensor Service', () => {
     let service: SensorService;

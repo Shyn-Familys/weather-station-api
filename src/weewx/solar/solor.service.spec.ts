@@ -1,8 +1,8 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {SolarService} from './solar.service';
 import {getRepositoryToken} from '@nestjs/typeorm';
-import {SolarEntity} from '../entities';
 import {Repository} from 'typeorm';
+import {SolarEntity} from '../entities';
+import {SolarService} from './solar.service';
 
 describe('Solar Service', () => {
     let service: SolarService;
