@@ -7,6 +7,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
+    "build:docs": "npx compodoc",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -41,6 +42,7 @@
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
     "@nestjs/cli": "^7.0.0",
     "@nestjs/schematics": "^7.0.0",
     "@nestjs/testing": "^7.0.0",
@@ -81,5 +83,10 @@
       "/node_modules/",
       "<rootDir>/weewx/entities"
     ]
+  },
+  "compodoc": {
+    "tsconfig": "./tsconfig.json",
+    "disableCoverage": true,
+    "output": "docs"
   }
 }
