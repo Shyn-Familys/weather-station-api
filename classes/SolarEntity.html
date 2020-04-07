@@ -193,6 +193,17 @@
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;W/M2&#x27;</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/weewx/entities/solar.entity.ts:9</a></div>
@@ -250,6 +261,17 @@
                         </span>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;UV&#x27;</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
                                     <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/weewx/entities/solar.entity.ts:13</a></div>
@@ -550,11 +572,11 @@ import {ArchiveBaseEntity} from &#x27;./archiveBase.entity&#x27;;
 export class SolarEntity extends ArchiveBaseEntity {
     @Column(&#x27;real&#x27;, {name: &#x27;radiation&#x27;, nullable: true})
     radiation: number | null;
-    radiationUnits: &#x27;W/M2&#x27;;
+    radiationUnits &#x3D; &#x27;W/M2&#x27;;
 
     @Column(&#x27;real&#x27;, {name: &#x27;UV&#x27;, nullable: true})
     uv: number | null;
-    uvUnits: &#x27;UV&#x27;;
+    uvUnits &#x3D; &#x27;UV&#x27;;
 
     @AfterLoad()
     setUnits() {
