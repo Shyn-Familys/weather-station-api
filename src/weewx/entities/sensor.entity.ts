@@ -7,11 +7,11 @@ export class SensorEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'rxCheckPercent', nullable: true})
     signalQuality: number | null;
-    signalQualityUnits: '%';
+    signalQualityUnits = '%';
 
     @Column('real', {name: 'txBatteryStatus', nullable: true})
     transmitterBattery: number | null;
-    transmitterBatteryUnits: '%';
+    transmitterBatteryUnits = '%';
 
     @Column('real', {name: 'consBatteryVoltage', nullable: true})
     consoleBatteryVoltage: number | null;
@@ -35,19 +35,19 @@ export class SensorEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windBatteryStatus', nullable: true})
     windSensorBattery: number | null;
-    windSensorBatteryUnits: '%';
+    windSensorBatteryUnits = '%';
 
     @Column('real', {name: 'rainBatteryStatus', nullable: true})
     rainSensorBattery: number | null;
-    rainSensorBatteryUnits: '%';
+    rainSensorBatteryUnits = '%';
 
     @Column('real', {name: 'outTempBatteryStatus', nullable: true})
     outsideTemperatureBattery: number | null;
-    outsideTemperatureBatteryUnits: '%';
+    outsideTemperatureBatteryUnits = '%';
 
     @Column('real', {name: 'inTempBatteryStatus', nullable: true})
     insideTemperatureBattery: number | null;
-    insideTemperatureBatteryUnits: '%';
+    insideTemperatureBatteryUnits = '%';
 
     @AfterLoad()
     setUnits() {

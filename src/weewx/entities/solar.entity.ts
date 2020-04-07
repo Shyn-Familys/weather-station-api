@@ -6,11 +6,11 @@ import {ArchiveBaseEntity} from './archiveBase.entity';
 export class SolarEntity extends ArchiveBaseEntity {
     @Column('real', {name: 'radiation', nullable: true})
     radiation: number | null;
-    radiationUnits: 'W/M2';
+    radiationUnits = 'W/M2';
 
     @Column('real', {name: 'UV', nullable: true})
     uv: number | null;
-    uvUnits: 'UV';
+    uvUnits = 'UV';
 
     @AfterLoad()
     setUnits() {

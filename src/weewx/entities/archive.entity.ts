@@ -107,11 +107,11 @@ export class ArchiveEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'rxCheckPercent', nullable: true})
     signalQuality: number | null;
-    signalQualityUnits: '%';
+    signalQualityUnits = '%';
 
     @Column('real', {name: 'txBatteryStatus', nullable: true})
     transmitterBattery: number | null;
-    transmitterBatteryUnits: '%';
+    transmitterBatteryUnits = '%';
 
     @Column('real', {name: 'consBatteryVoltage', nullable: true})
     consoleBatteryVoltage: number | null;
@@ -135,27 +135,27 @@ export class ArchiveEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windBatteryStatus', nullable: true})
     windSensorBattery: number | null;
-    windSensorBatteryUnits: '%';
+    windSensorBatteryUnits = '%';
 
     @Column('real', {name: 'rainBatteryStatus', nullable: true})
     rainSensorBattery: number | null;
-    rainSensorBatteryUnits: '%';
+    rainSensorBatteryUnits = '%';
 
     @Column('real', {name: 'outTempBatteryStatus', nullable: true})
     outsideTemperatureBattery: number | null;
-    outsideTemperatureBatteryUnits: '%';
+    outsideTemperatureBatteryUnits = '%';
 
     @Column('real', {name: 'inTempBatteryStatus', nullable: true})
     insideTemperatureBattery: number | null;
-    insideTemperatureBatteryUnits: '%';
+    insideTemperatureBatteryUnits = '%';
 
     @Column('real', {name: 'radiation', nullable: true})
     radiation: number | null;
-    radiationUnits: 'W/M2';
+    radiationUnits = 'W/M2';
 
     @Column('real', {name: 'UV', nullable: true})
     uv: number | null;
-    uvUnits: 'UV';
+    uvUnits = 'UV';
 
     @Column('real', {name: 'outTemp', nullable: true})
     outsideTemperature: number | null;
@@ -191,7 +191,7 @@ export class ArchiveEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windDir', nullable: true})
     windDirection: number | null;
-    windDirectionUnits: '°';
+    windDirectionUnits = '°';
 
     @Column('real', {name: 'windGust', nullable: true})
     windGustSpeed: number | null;
@@ -199,7 +199,7 @@ export class ArchiveEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windGustDir', nullable: true})
     windGustDirection: number | null;
-    windGustDirectionUnits: '°';
+    windGustDirectionUnits = '°';
 
     @AfterLoad()
     setAgricultureUnits() {

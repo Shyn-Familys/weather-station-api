@@ -11,7 +11,7 @@ export class WindEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windDir', nullable: true})
     windDirection: number | null;
-    windDirectionUnits: '°';
+    windDirectionUnits = '°';
 
     @Column('real', {name: 'windGust', nullable: true})
     windGustSpeed: number | null;
@@ -19,7 +19,7 @@ export class WindEntity extends ArchiveBaseEntity {
 
     @Column('real', {name: 'windGustDir', nullable: true})
     windGustDirection: number | null;
-    windGustDirectionUnits: '°';
+    windGustDirectionUnits = '°';
 
     @AfterLoad()
     setUnits() {
