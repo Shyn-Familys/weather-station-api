@@ -6,6 +6,7 @@ import {Repository} from 'typeorm';
 import {ControllerBase} from './base.controller';
 import {ServiceBase} from './base.service';
 import {ArchiveBaseEntity} from './entities/archiveBase.entity';
+import path = require('path');
 
 describe('Controller Base', () => {
 
@@ -27,7 +28,7 @@ describe('Controller Base', () => {
     let service: SpecService;
     let controller: SpecController;
 
-    process.env.URL_PREFIX = '/testing/prefix';
+    process.env.URL_PREFIX = `${path.sep}testing${path.sep}prefix`;
 
     beforeEach(async () => {
         serviceMock = {
@@ -75,13 +76,13 @@ describe('Controller Base', () => {
 
     const functionsToTest = [
         {controllerFnName: 'getToday', serviceFnName: 'getToday', path: ''},
-        {controllerFnName: 'getSince', serviceFnName: 'getSince', params: [undefined, undefined, 1], path: '/from/1'},
-        {controllerFnName: 'getLast24Hours', serviceFnName: 'getLast24Hours', path: '/last24Hours'},
-        {controllerFnName: 'getYesterday', serviceFnName: 'getYesterday', path: '/yesterday'},
-        {controllerFnName: 'getWeek', serviceFnName: 'getThisWeek', path: '/week'},
-        {controllerFnName: 'getMonth', serviceFnName: 'getThisMonth', path: '/month'},
-        {controllerFnName: 'getQuarter', serviceFnName: 'getThisQuarter', path: '/quarter'},
-        {controllerFnName: 'getYear', serviceFnName: 'getThisYear', path: '/year'}
+        {controllerFnName: 'getSince', serviceFnName: 'getSince', params: [undefined, undefined, 1], path: `${path.sep}from${path.sep}1`},
+        {controllerFnName: 'getLast24Hours', serviceFnName: 'getLast24Hours', path: `${path.sep}last24Hours`},
+        {controllerFnName: 'getYesterday', serviceFnName: 'getYesterday', path: `${path.sep}yesterday`},
+        {controllerFnName: 'getWeek', serviceFnName: 'getThisWeek', path: `${path.sep}week`},
+        {controllerFnName: 'getMonth', serviceFnName: 'getThisMonth', path: `${path.sep}month`},
+        {controllerFnName: 'getQuarter', serviceFnName: 'getThisQuarter', path: `${path.sep}quarter`},
+        {controllerFnName: 'getYear', serviceFnName: 'getThisYear', path: `${path.sep}year`}
     ];
 
     functionsToTest.forEach((func) => {
@@ -94,14 +95,14 @@ describe('Controller Base', () => {
                     expect(service[func.serviceFnName]).toHaveBeenCalledWith(
                         func.params[2],
                         expect.objectContaining({
-                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}/base${func.path}`
+                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}${path.sep}base${func.path}`
                         })
                     );
                 } else {
                     await controller[func.controllerFnName]();
                     expect(service[func.serviceFnName]).toHaveBeenCalledWith(
                         expect.objectContaining({
-                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}/base${func.path}`
+                            limit: 100, page: 0, route: `${process.env.URL_PREFIX}${path.sep}base${func.path}`
                         })
                     );
                 }
